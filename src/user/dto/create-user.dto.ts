@@ -7,20 +7,18 @@ export class CreateUserDto {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ example: 'password123', description: 'The password of the user' })
+  @ApiProperty({ example: 'secured', description: 'The password of the user' })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   password: string;
 
- @ApiProperty({ example: 'johndoe@example.com', description: 'The email of the user' })
+  @ApiProperty({
+    example: 'johndoe@example.com',
+    description: 'The email of the user',
+  })
   @IsEmail()
   @IsNotEmpty()
   email: string;
-
- @ApiProperty({ example: '1234567890', description: 'The mobile number of the user' })
-  @IsString()
-  @IsOptional() 
-  mobileNumber: string;  
 }
 
 export class UserResponseDto extends CreateUserDto {

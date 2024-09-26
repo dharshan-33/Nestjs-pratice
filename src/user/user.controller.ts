@@ -14,11 +14,15 @@ import { UserService } from './user.service';
 import { CreateUserDto, UserResponseDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { CommentService } from 'src/comment/comment.service';
 
 @ApiTags('users')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly commentService: CommentService,
+  ) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new user' })
@@ -82,6 +86,11 @@ export class UserController {
       throw new NotFoundException('User does not exist!');
     }
     return user;
+  }
+
+  @Get(':id/comments')
+  getUserComment(@Param('id') id: string) {
+    return this.commentService.findUserComments(id);
   }
 
   @Patch(':id')
