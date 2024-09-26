@@ -12,7 +12,7 @@ import { User } from './user/entities/user.entity';
       password: 'Dharshan@16',
       database: 'project1',
       entities: [User],
-      synchronize: true,
+      synchronize: false,
     }),
     UserModule,
   ],
